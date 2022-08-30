@@ -37,7 +37,7 @@ while i <= count:
         df = pd.read_sql(f'SELECT * FROM {MYSQL_TABLE} limit {i}, {j}', con=mysql_connection)
 
     for bool_rows in MYSQL_BOOL_TABLE_ROWS:
-        df["bool_rows"] = [True if ele == 1 else False for ele in df["bool_rows"]]
+        df[bool_rows] = [True if ele == 1 else False for ele in df[bool_rows]]
 
     df.to_sql(POSTGRES_TABLE, pgsql_connection, if_exists='append', index=False)
     i += j
